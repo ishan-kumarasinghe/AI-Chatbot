@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { getAllUsers } from "../handlers/user-handlers.js";
+import { getAllUsers, signup } from "../handlers/user-handlers.js";
+import { userSignupValidator, validate } from "../libs/data-validators.js";
 
 const userRouter = Router();
 
 userRouter.get("/", getAllUsers);
-userRouter.post("/signup");
+userRouter.post("/signup", validate(userSignupValidator), signup);
 
 export default userRouter;

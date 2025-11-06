@@ -5,6 +5,8 @@ import { connectToMongoDB } from "./connections/mongodbConnections.js";
 import userRouter from "./routes/user-router.js";
 config();
 const app = express();
+//To accept json data from front end
+app.use(express.json());
 //First Route
 // app.use("/", (req, res, next) => {
 //   return res.status(200).json({ message: "Hi I'm Listening!" });

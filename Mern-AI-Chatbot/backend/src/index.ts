@@ -1,4 +1,4 @@
-import { config } from "dotenv"
+import { config } from "dotenv";
 //To open application server
 import express from "express";
 import { connectToMongoDB } from "./connections/mongodbConnections.js";
@@ -7,6 +7,9 @@ import userRouter from "./routes/user-router.js";
 config();
 
 const app = express();
+
+//To accept json data from front end
+app.use(express.json());
 
 //First Route
 // app.use("/", (req, res, next) => {
@@ -19,12 +22,8 @@ app.use("/user", userRouter);
 connectToMongoDB()
   .then(() => {
     //To open development server of the application
-    app.listen(process.env.PORT, () =>
-      console.log("Server Open and running.")
-    );
+    app.listen(process.env.PORT, () => console.log("Server Open and running."));
   })
   .catch((err) => console.error(err));
 
-console.log(
-  "This is a starter kit for this amazing project."
-);
+console.log("This is a starter kit for this amazing project.");
