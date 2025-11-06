@@ -18,13 +18,18 @@ export const validate = (validations: any[]) => {
   };
 };
 
-//Validation Rules
-export const userSignupValidator = [
-  body("name").notEmpty().withMessage("Name is empty"),
+//Validation Rules for Login
+export const userLoginValidator = [
   body("email").notEmpty().isEmail().withMessage("Email is incorrect"),
   body("password")
     .isLength({ min: 6, max: 25 })
     .withMessage(
       "Minimum length of password should be between 5-25 characters"
     ),
+];
+
+//Validation Rules
+export const userSignupValidator = [
+  ...userLoginValidator,
+  body("name").notEmpty().withMessage("Name is empty"),
 ];

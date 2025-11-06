@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import express from "express";
 import { connectToMongoDB } from "./connections/mongodbConnections.js";
 import userRouter from "./routes/user-router.js";
+import cookieParser from "cookie-parser";
 
 config();
 
@@ -10,6 +11,9 @@ const app = express();
 
 //To accept json data from front end
 app.use(express.json());
+
+//Define Cookie parser middleware
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 //First Route
 // app.use("/", (req, res, next) => {
