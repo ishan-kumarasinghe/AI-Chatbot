@@ -22,7 +22,7 @@ const Logo = () => {
           textShadow: "2px 2px 20px #000",
         }}
       >
-        <span style={{fontSize: "30px"}}>MERN</span>-GPT
+        <span style={{ fontSize: "30px" }}>MERN</span>-GPT
       </Typography>
     </Box>
   );
