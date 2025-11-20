@@ -10,19 +10,12 @@ const theme = createTheme({ typography: { fontFamily: "Roboto Slab, Serif" } });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {
-      (() => {
-        const Provider = AuthProvider();
-        return (
-          <Provider>
-            <BrowserRouter>
-              <ThemeProvider theme={theme}>
-                <App />
-              </ThemeProvider>
-            </BrowserRouter>
-          </Provider>
-        );
-      })()
-    }
+    <AuthProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </AuthProvider>
   </StrictMode>
 );

@@ -10,3 +10,16 @@ html, body {
 .image-color{
   filter: invert(100%);
 }
+
+.navlink{
+  color: black;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 8px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: "Roboto Slab", serif;
+  letter-spacing: 1px;
+}
