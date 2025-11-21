@@ -36,7 +36,8 @@ export const AuthProvider =
       setUser(null);
     }, []);
 
-    const login = async (email: string, password: string) => {};
+    const login = async (name: string, password: string) => {};
+    const signup = async (name: string, email: string, password: string) => {};
     const logout = async () => {};
 
     // Publish the data - bundles all data into an object called 'value', and broadcasts them to all the children
@@ -44,6 +45,7 @@ export const AuthProvider =
       user,
       login,
       logout,
+      signup,
       isLoggedIn,
     };
 
