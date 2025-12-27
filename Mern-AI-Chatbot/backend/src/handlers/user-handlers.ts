@@ -33,7 +33,7 @@ export const signup = async (req: Request, res: Response) => {
     //Signed up new user
     const user = new User({ name, email, password: hashedPassword });
     await user.save();
-    return res.status(201).json({ message: "Signed Up", user });
+    return res.status(201).json({ message: "Signed Up",  name: user.name, email: user.email });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });
@@ -71,7 +71,7 @@ export const login = async (req: Request, res: Response) => {
       sameSite: "none",
     });
 
-    return res.status(200).json({ message: "Logged in successfully", user });
+    return res.status(200).json({ message: "Logged in successfully", name: user.name, email: user.email });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });

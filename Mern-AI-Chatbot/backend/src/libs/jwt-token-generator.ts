@@ -1,4 +1,5 @@
 import { sign, SignOptions, Secret } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 export const createToken = (id: string, email: string, expiresIn: string) => {
   const secret = process.env.JWT_SECRET;
@@ -7,6 +8,6 @@ export const createToken = (id: string, email: string, expiresIn: string) => {
   const options: SignOptions = {
     expiresIn: expiresIn as unknown as SignOptions["expiresIn"],
   };
-  const token = sign({ id, email }, secret as Secret, options);
+  const token = jwt.sign({ id, email }, secret as Secret, options);
   return token;
 };
