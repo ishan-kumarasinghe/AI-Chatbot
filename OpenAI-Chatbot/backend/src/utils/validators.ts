@@ -1,7 +1,6 @@
 import { body, ValidationChain, validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 
-
 export const validate = (validations: ValidationChain[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     for (let validation of validations) {
@@ -18,11 +17,15 @@ export const validate = (validations: ValidationChain[]) => {
   };
 };
 
-export const signupValidator = [
-  body("name").notEmpty().withMessage("Name is required."),
+export const loginValidator = [
   body("email").isEmail().withMessage("Email is required."),
   body("password")
     .trim()
     .isLength({ min: 6 })
     .withMessage("Password should contain atleast 6 characters."),
+];
+
+export const signupValidator = [
+  body("name").notEmpty().withMessage("Name is required."),
+  ...loginValidator,
 ];
