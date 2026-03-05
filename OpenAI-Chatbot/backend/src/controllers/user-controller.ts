@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import { NextFunction, Request, Response } from "express";
 import { hash, compare } from "bcrypt";
 import { createToken } from "../utils/token-manager.js";
+import { COOKIE_NAME } from "../utils/constants.js";
 
 export const getAllUsers = async (
   req: Request,
@@ -38,6 +39,30 @@ export const userSignup = async (
 
     //Save the user
     await user.save();
+
+    //Clear previous cookies
+    res.clearCookie(COOKIE_NAME, {
+      httpOnly: true,
+      domain: "localhost",
+      signed: true,
+      path: "/",
+    });
+
+    //Initiate the jwt token using user details
+    const token = createToken(user._id.toString(), user.email, "1d");
+
+    //Set the expires date
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 1);
+    //Initiate cookie and attach it to response
+    res.cookie(COOKIE_NAME, token, {
+      path: "/",
+      domain: "localhost",
+      expires,
+      httpOnly: true,
+      signed: true,
+    });
+
     return res.status(201).json({ message: "OK", id: user._id.toString() });
   } catch (error) {
     console.log(error);
@@ -66,7 +91,28 @@ export const userLogin = async (
       return res.status(403).send("Incorrect Password");
     }
 
+    //Clear previous cookies
+    res.clearCookie(COOKIE_NAME, {
+      httpOnly: true,
+      domain: "localhost",
+      signed: true,
+      path: "/",
+    });
+
+    //Initiate the jwt token using user details
     const token = createToken(user._id.toString(), user.email, "1d");
+
+    //Set the expires date
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 1);
+    //Initiate cookie and attach it to response
+    res.cookie(COOKIE_NAME, token, {
+      path: "/",
+      domain: "localhost",
+      expires,
+      httpOnly: true,
+      signed: true,
+    });
 
     return res.status(200).json({ message: "OK", id: user._id.toString() });
   } catch (error) {
