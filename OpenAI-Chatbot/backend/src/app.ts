@@ -3,12 +3,16 @@ import { config } from "dotenv";
 import morgan from "morgan";
 import appRouter from "./routes/index.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 //To access .env file
 config();
 const app = express();
 
 ////Middlewares
+//To whitelist another server to correct cors error
+app.use(cors({origin: "http://localhost:5173", credentials: true}));
+
 //To pass json with post, put api
 app.use(express.json());
 
