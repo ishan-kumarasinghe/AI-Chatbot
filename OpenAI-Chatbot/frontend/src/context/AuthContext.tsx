@@ -42,8 +42,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoggedIn(true);
       }
     }
+    //Call above async function
     checkStatus();
   }, []);
+  
   const login = async (email: string, password: string) => {
     const data = await loginUser(email, password);
     if (data) {
@@ -51,6 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoggedIn(true);
     }
   };
+
   const signup = async (name: string, email: string, password: string) => {
     const data = await signupUser(name, email, password);
     if (data) {
@@ -58,6 +61,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoggedIn(true);
     }
   };
+
   const logout = async () => {
     await logoutUser();
     setIsLoggedIn(false);
