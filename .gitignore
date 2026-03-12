@@ -1,2 +1,5 @@
 # Environment files with secrets
 OpenAI-Chatbot/backend/.env
+OpenAI-Chatbot/frontend/.env
+OpenAl-Chatbot/CORS_error.png
+OpenAl-Chatbot/backend/dist/
